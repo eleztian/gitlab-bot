@@ -1,0 +1,13 @@
+release/
+bin/
+log/
+data/
+*.assets/
+*.json
+*.yaml
+upgrade/
+example/
+test/
+*.tar.gz
+.idea/
+.git/

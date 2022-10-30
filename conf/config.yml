@@ -1,0 +1,6 @@
+routers:
+  /bot-test:
+    types:
+      - Issue Hook
+      - Note Hook
+    handler: "bot-test"

@@ -1,0 +1,54 @@
+run:
+  concurrency: 5
+  tests: false
+  #    skip-dirs-use-default: true
+  skip-dirs:
+    - docs
+    - vendor
+    - test
+  fast: true
+
+linters:
+  enable:
+#    - bodyclose #  检查 HTTP 响应体是否关闭成功 1.18 不支持
+    - depguard # 检查包导入是否在可接受包列表中
+    - errcheck # 用于检查 gotag  程序中未检查错误的程序
+    - exportloopref # 检查指向封闭循环变量的指针
+    - gofmt  # 检查代码是否是 gofmt-ed
+    - goimports #
+    - gosec # 检查源代码是否存在安全问题
+    - gosimple
+    - govet # 检查 Go 源代码并报告可疑结构，例如参数与格式字符串不一致的 Printf
+    - ineffassign # 检测何时不使用对现有变量的赋值
+    - misspell # 在评论中查找常见拼写错误的英语单词
+#    - structcheck # 查找未使用的结构字段 1.18
+    - typecheck # 像 Go 编译器的前端一样，解析和类型检查 Go 代码
+    - errname # 检查标记错误是否以“Err”为前缀，错误类型以“Error”为后缀
+    - unconvert # 删除不必要的类型转换
+  #    - gomnd # 检测幻数的分析器
+  #    - deadcode
+  #    - unused
+  #    - execinquery #  Query 函数中查询字符串检查器的 linter
+
+linters-settings:
+  govet:
+    check-shadowing: false
+  depguard:
+    list-type: blacklist
+    include-go-root: true
+    packages:
+      # The io/ioutil package has been deprecated.
+      # https://go.dev/doc/go1.16#ioutil
+      - io/ioutil
+  gosec:
+    excludes:
+      - G401
+      - G402
+      - G501
+issues:
+  exclude-rules:
+    - linters:
+        - staticcheck
+        - typecheck
+        - structcheck
+      text: "unused"
